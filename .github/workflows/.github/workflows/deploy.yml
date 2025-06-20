@@ -1,0 +1,29 @@
+name: Deploy Simulation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '11'
+
+    - name: Build Project
+      run: mvn clean package
+
+    - name: Simulate Deployment
+      run: |
+        echo "✅ Build sukses, sekarang simulasi deploy..."
+        ls -la target/
+        echo "🚀 Simulasi Deployment berhasil!"
